@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -43,6 +43,10 @@ jobs:
       - name: Generate Application Key
         run: php artisan key:generate
 
+      # FIX: Creates the missing nested directory structures Laravel needs for storage
+      - name: Create Storage Directories
+        run: mkdir -p storage/framework/signals storage/framework/sessions storage/framework/views storage/framework/cache app/public
+
       - name: Set Permissions
         run: chmod -R 777 storage bootstrap/cache
 
@@ -62,5 +66,6 @@ jobs:
           APP_ENV: testing
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
+          CACHE_STORE: array
+          SESSION_DRIVER: array
         run: php artisan test
-
