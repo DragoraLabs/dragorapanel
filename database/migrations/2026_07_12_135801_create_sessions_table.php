@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('token', 64);
+            $table->string('session_key', 64)->nullable();
             $table->timestamp('expires_at');
             $table->timestamp('created_at')->useCurrent();
         });

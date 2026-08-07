@@ -7,6 +7,7 @@ use App\Models\ApiToken;
 use App\Models\Notification;
 use App\Models\Session;
 use App\Models\User;
+use App\Services\ApiAuth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -16,9 +17,7 @@ class UserController extends Controller
 {
     private function getUser(Request $request): ?User
     {
-        $token = $request->bearerToken();
-        if (!$token) return null;
-        return Session::where('token', $token)->valid()->first()?->user;
+        return ApiAuth::user($request);
     }
 
     // ── Profile ──

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Setting;
 use App\Models\Session;
 use App\Models\User;
+use App\Services\ApiAuth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,7 @@ class WebServerController extends Controller
 {
     private function getUser(Request $request): ?User
     {
-        $token = $request->bearerToken();
-        if (!$token) return null;
-        $session = Session::where('token', $token)->valid()->first();
-        return $session?->user;
+        return ApiAuth::user($request);
     }
 
     private function requireAdmin(Request $request): ?JsonResponse

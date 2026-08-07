@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\ActivityLog;
 use App\Models\Allocation;
+use App\Models\DatabaseHost;
 use App\Models\Location;
 use App\Models\Node;
 use App\Models\Server;
 use App\Models\Setting;
 use App\Models\Session;
 use App\Models\User;
+use App\Services\ApiAuth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -19,10 +21,7 @@ class AdminController extends Controller
 {
     private function getUser(Request $request): ?User
     {
-        $token = $request->bearerToken();
-        if (!$token) return null;
-        $session = Session::where('token', $token)->valid()->first();
-        return $session?->user;
+        return ApiAuth::user($request);
     }
 
     private function requireAdmin(Request $request): ?JsonResponse
@@ -68,9 +67,10 @@ class AdminController extends Controller
             'last_name' => 'nullable|string|max:255',
             'role' => 'nullable|string|in:member,admin',
             'password' => 'nullable|min:6',
+            'banned' => 'nullable|boolean',
         ]);
         if (isset($data['password'])) $data['password'] = Hash::make($data['password']);
-        $user->update(array_filter($data));
+        $user->update(array_filter($data, fn ($v) => $v !== null));
         return response()->json(['success' => true, 'user' => $user]);
     }
 
@@ -171,6 +171,92 @@ class AdminController extends Controller
         return response()->json(['success' => true]);
     }
 
+    public function databaseTest(Request $request): JsonResponse
+    {
+        $block = $this->requireAdmin($request); if ($block) return $block;
+        try {
+            $dsn = sprintf('mysql:host=%s;port=%d;charset=utf8mb4', Setting::get('db:host', '127.0.0.1'), (int) Setting::get('db:port', 3306));
+            $conn = new \PDO($dsn, Setting::get('db:username', 'root'), Setting::get('db:password', ''), [
+                \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+                \PDO::ATTR_TIMEOUT => 5,
+            ]);
+            $version = $conn->query('SELECT VERSION()')->fetchColumn();
+            return response()->json(['success' => true, 'version' => $version]);
+        } catch (\Throwable $e) {
+            return response()->json(['success' => false, 'error' => $e->getMessage()]);
+        }
+    }
+
+    // ── Database Hosts ──
+
+    public function databaseHostsIndex(Request $request): JsonResponse
+    {
+        $block = $this->requireAdmin($request); if ($block) return $block;
+        $hosts = DatabaseHost::orderBy('name')->get();
+        foreach ($hosts as $h) {
+            $h->databases_used = $h->currentDatabaseCount();
+        }
+        return response()->json(['success' => true, 'hosts' => $hosts]);
+    }
+
+    public function databaseHostsStore(Request $request): JsonResponse
+    {
+        $block = $this->requireAdmin($request); if ($block) return $block;
+        $data = $request->validate([
+            'name' => 'required|string|max:64',
+            'host' => 'required|string|max:255',
+            'port' => 'required|integer|min:1|max:65535',
+            'username' => 'required|string|max:64',
+            'password' => 'nullable|string|max:255',
+            'max_databases' => 'nullable|integer|min:0',
+            'is_enabled' => 'nullable|boolean',
+        ]);
+        $data['password'] = $data['password'] ?? '';
+        $data['is_enabled'] = $data['is_enabled'] ?? true;
+        $host = DatabaseHost::create($data);
+        return response()->json(['success' => true, 'host' => $host]);
+    }
+
+    public function databaseHostsUpdate(Request $request, DatabaseHost $databaseHost): JsonResponse
+    {
+        $block = $this->requireAdmin($request); if ($block) return $block;
+        $data = $request->validate([
+            'name' => 'sometimes|string|max:64',
+            'host' => 'sometimes|string|max:255',
+            'port' => 'sometimes|integer|min:1|max:65535',
+            'username' => 'sometimes|string|max:64',
+            'password' => 'nullable|string|max:255',
+            'max_databases' => 'nullable|integer|min:0',
+            'is_enabled' => 'nullable|boolean',
+        ]);
+        if (array_key_exists('password', $data) && ($data['password'] === '' || $data['password'] === null)) {
+            unset($data['password']);
+        }
+        $databaseHost->update($data);
+        return response()->json(['success' => true, 'host' => $databaseHost]);
+    }
+
+    public function databaseHostsDestroy(Request $request, DatabaseHost $databaseHost): JsonResponse
+    {
+        $block = $this->requireAdmin($request); if ($block) return $block;
+        if ($databaseHost->currentDatabaseCount() > 0) {
+            return response()->json(['success' => false, 'error' => 'This host still has databases attached to it.'], 422);
+        }
+        $databaseHost->delete();
+        return response()->json(['success' => true]);
+    }
+
+    public function databaseHostTest(Request $request, DatabaseHost $databaseHost): JsonResponse
+    {
+        $block = $this->requireAdmin($request); if ($block) return $block;
+        try {
+            $version = $databaseHost->pdo()->query('SELECT VERSION()')->fetchColumn();
+            return response()->json(['success' => true, 'version' => $version]);
+        } catch (\Throwable $e) {
+            return response()->json(['success' => false, 'error' => $e->getMessage()]);
+        }
+    }
+
     public function logoUpload(Request $request): JsonResponse
     {
         $block = $this->requireAdmin($request); if ($block) return $block;
@@ -191,6 +277,20 @@ class AdminController extends Controller
             }
         }
         return response()->file($disk->path('logo/' . $file));
+    }
+
+    public function getDefaultLogo()
+    {
+        $path = storage_path('app/images/logo.png');
+        if (!file_exists($path)) abort(404);
+        return response()->file($path);
+    }
+
+    public function getAvatar()
+    {
+        $path = storage_path('app/images/user.png');
+        if (!file_exists($path)) abort(404);
+        return response()->file($path);
     }
 
     public function getBackgroundImage()

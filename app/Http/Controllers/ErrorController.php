@@ -39,8 +39,11 @@ class ErrorController extends Controller
     private function logoUrl(): string
     {
         $file = Setting::get('panel:logo', '');
-        if (!$file) return '';
-        $filename = basename($file);
-        return $filename ? route('panel.logo', ['file' => $filename]) : '';
+        if ($file) {
+            $filename = basename($file);
+            if ($filename) return route('panel.logo', ['file' => $filename]);
+        }
+        $default = storage_path('app/images/logo.png');
+        return file_exists($default) ? route('panel.logo.default') : '';
     }
 }

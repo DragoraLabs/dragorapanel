@@ -6,11 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Backup extends Model
 {
-    protected $fillable = ['server_id', 'name', 'file_hash', 'size_bytes', 'status', 'is_locked'];
+    protected $fillable = ['server_id', 'name', 'file_hash', 'size_bytes', 'status', 'restore_status', 'is_locked'];
 
     protected function casts(): array
     {
-        return ['is_locked' => 'boolean'];
+        return [
+            'is_locked' => 'boolean',
+            'restored_at' => 'datetime',
+        ];
     }
 
     public function server() { return $this->belongsTo(Server::class); }

@@ -11,6 +11,7 @@ class Session extends Model
     protected $fillable = [
         'user_id',
         'token',
+        'session_key',
         'expires_at',
     ];
 

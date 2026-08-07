@@ -10,13 +10,14 @@ class Server extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'user_id', 'node_id', 'name', 'type', 'version', 'status',
+        'egg_id', 'user_id', 'node_id', 'name', 'type', 'version', 'java_version', 'docker_image', 'status',
         'memory_mb', 'storage_mb', 'port', 'ip_address',
         'console_logs', 'command_queue', 'memory_used_mb', 'cpu_percent',
     ];
 
     public function user() { return $this->belongsTo(User::class); }
     public function node() { return $this->belongsTo(Node::class); }
+    public function egg() { return $this->belongsTo(Egg::class); }
     public function databases() { return $this->hasMany(ServerDatabase::class); }
     public function backups() { return $this->hasMany(Backup::class); }
     public function schedules() { return $this->hasMany(Schedule::class); }

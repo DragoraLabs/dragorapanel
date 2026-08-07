@@ -10,9 +10,12 @@ class PageController extends Controller
     private function logoUrl(): string
     {
         $file = Setting::get('panel:logo', '');
-        if (!$file) return '';
-        $filename = basename($file);
-        return $filename ? route('panel.logo', ['file' => $filename]) : '';
+        if ($file) {
+            $filename = basename($file);
+            if ($filename) return route('panel.logo', ['file' => $filename]);
+        }
+        $default = storage_path('app/images/logo.png');
+        return file_exists($default) ? route('panel.logo.default') : '';
     }
 
     public function index()
@@ -22,6 +25,13 @@ class PageController extends Controller
         }
         $defaults = [
             'topbar_type' => 'default',
+            'nav_home_text' => 'home',
+            'nav_features_text' => 'features',
+            'nav_testimonials_text' => 'testimonials',
+            'features_label' => 'features',
+            'features_icon' => 'fa-cube',
+            'testimonials_label' => 'testimonials',
+            'testimonial_icon' => 'fa-quote-right',
             'hero_title' => 'server management,<br><span class="highlight">simplified<svg viewBox="0 0 80 12" preserveAspectRatio="none"><path d="M0,8 Q10,4 20,8 T40,8 T60,8 T80,8" stroke="var(--accent)" fill="none" stroke-width="2.5" opacity=".4"/></svg></span>',
             'hero_subtitle' => 'Full-featured game server management panel with real-time console, file manager, database administration, and automated backups — all from your browser.',
             'login_text' => 'log in',
@@ -44,19 +54,19 @@ class PageController extends Controller
                 ['icon'=>'fa-puzzle-piece','title'=>'plugin manager','text'=>'Upload, enable, disable, and configure plugins through an intuitive interface.','note'=>'compatible with Bukkit, Spigot, and Paper','tall'=>false,'accent'=>false],
                 ['icon'=>'fa-shield-alt','title'=>'authentication','text'=>'Multi-provider authentication with Google, Discord, and email/password login. Role-based access control included.','note'=>'supports OAuth2, SSO, and 2FA','tall'=>true,'accent'=>true],
             ],
-            'testimonial_quote' => 'We evaluated several management panels before deploying HostIt across our infrastructure. The intuitive interface and reliable console access made it the clear choice for our community.',
+            'testimonial_quote' => 'We evaluated several management panels before deploying DragoraPanel across our infrastructure. The intuitive interface and reliable console access made it the clear choice for our community.',
             'testimonial_author' => 'Alex Chen',
             'testimonial_handle' => 'Server Administrator · MC Network',
             'cta_title' => 'ready to get started?',
             'cta_text' => 'Deploy your first server in minutes. No credit card required.',
             'cta_btn_text' => 'start free trial',
-            'footer_text' => 'HostIt &copy; 2026 &mdash; Game Server Management Platform',
+            'footer_text' => 'DragoraPanel &copy; 2026 &mdash; Game Server Management Platform',
         ];
         $raw = Setting::get('design:page', '{}');
         $saved = json_decode($raw, true) ?? [];
         $design = array_merge($defaults, $saved);
         return view('index', [
-            'panelName' => Setting::get('panel:name', 'HostIt'),
+            'panelName' => Setting::get('panel:name', 'DragoraPanel'),
             'panelLogo' => $this->logoUrl(),
             'design' => $design,
         ]);
@@ -65,16 +75,22 @@ class PageController extends Controller
     public function login()
     {
         return view('auth.login', [
-            'panelName' => Setting::get('panel:name', 'HostIt'),
+            'panelName' => Setting::get('panel:name', 'DragoraPanel'),
             'panelLogo' => $this->logoUrl(),
+            'googleEnabled' => Setting::get('auth:google', '1') === '1',
+            'discordEnabled' => Setting::get('auth:discord', '1') === '1',
+            'adsEnabled' => Setting::get('ads:enabled', '0') === '1',
+            'adsHtml' => Setting::get('ads:html', ''),
         ]);
     }
 
     public function panel()
     {
-        return view('panel', [
-            'panelName' => Setting::get('panel:name', 'DragoraPanel'),
-            'panelLogo' => $this->logoUrl(),
-        ]);
+        return response()
+            ->view('panel', [
+                'panelName' => Setting::get('panel:name', 'DragoraPanel'),
+                'panelLogo' => $this->logoUrl(),
+            ])
+            ->header('Cache-Control', 'no-store, no-cache, must-revalidate');
     }
 }

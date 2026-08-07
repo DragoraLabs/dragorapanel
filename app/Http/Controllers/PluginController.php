@@ -6,6 +6,7 @@ use App\Models\Plugin;
 use App\Models\ActivityLog;
 use App\Models\Session;
 use App\Models\Setting;
+use App\Services\ApiAuth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,10 +16,7 @@ class PluginController extends Controller
 {
     private function getUser(Request $request): ?\App\Models\User
     {
-        $token = $request->bearerToken();
-        if (!$token) return null;
-        $session = Session::where('token', $token)->valid()->first();
-        return $session?->user;
+        return ApiAuth::user($request);
     }
 
     private function requireAdmin(Request $request): ?JsonResponse
@@ -56,6 +54,20 @@ class PluginController extends Controller
             ];
         });
         return response()->json(['success' => true, 'plugins' => $plugins]);
+    }
+
+    /**
+     * Lightweight signature of the installed plugin set. The frontend polls this
+     * and reloads every page when it changes (e.g. the store installed a plugin
+     * into this panel while the panel was open).
+     */
+    public function signature(Request $request): JsonResponse
+    {
+        $block = $this->requireAdmin($request); if ($block) return $block;
+        $sig = Plugin::orderBy('unique_id')->get()
+            ->map(fn ($p) => $p->unique_id . ':' . $p->version . ':' . ($p->enabled ? '1' : '0'))
+            ->join('|');
+        return response()->json(['success' => true, 'sig' => md5($sig)]);
     }
 
     public function upload(Request $request): JsonResponse
