@@ -1,21 +1,52 @@
-MIT License
+Copyright (c) 2026 DragoraLabs
 
-Copyright (c) 2026 dragoralabs
+Permission is hereby granted to licensed users to use and modify this
+software for their own personal or commercial use, subject to the
+following conditions:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. The original copyright notice and required DragoraLabs watermark must
+   not be removed, hidden, altered, or disabled.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+2. The Software, in whole or in part, may not be sold, resold, rented,
+   leased, sublicensed, redistributed, or otherwise provided to third
+   parties as a standalone product.
+
+3. The Software may not be rebranded, renamed, or modified for the purpose
+   of being sold or distributed as another person's or company's software.
+
+4. The use of any plugin, script, modification, CSS, JavaScript, or other
+   method specifically intended to remove, hide, disable, or circumvent
+   the required DragoraLabs watermark is prohibited.
+
+5. The license system, activation mechanism, security features, and other
+   license restrictions may not be bypassed, disabled, modified, or
+   circumvented.
+
+6. Licensed users may customize their installation, including the theme,
+   colors, layout, dashboard appearance, options, settings, plugins,
+   extensions, integrations, and other functionality, provided that such
+   modifications do not violate the restrictions above.
+
+7. Modified versions may be used by the licensed user on authorized
+   installations but may not be distributed or sold to third parties
+   without prior written permission from DragoraLabs.
+
+8. The DragoraLabs name, trademarks, copyright notices, and required
+   attribution remain the property of DragoraLabs and may not be presented
+   as the property of another person or company.
+
+9. A license may not be shared, transferred, or used by unauthorized
+   persons or installations unless expressly permitted by DragoraLabs.
+
+10. Any violation of these terms may result in termination of the license
+    and loss of the right to use the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+DRAGORALABS OR ITS COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR
+OTHER LIABILITY ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE
+OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+By using, installing, or modifying the Software, you agree to be bound by
+these terms.
