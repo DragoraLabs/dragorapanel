@@ -1,52 +1,212 @@
 Copyright (c) 2026 DragoraLabs
 
-Permission is hereby granted to licensed users to use and modify this
-software for their own personal or commercial use, subject to the
-following conditions:
+Permission is hereby granted to any person or organization to use, copy,
+modify, and customize this software for personal, educational, development,
+testing, or commercial purposes, subject to the following conditions:
 
-1. The original copyright notice and required DragoraLabs watermark must
-   not be removed, hidden, altered, or disabled.
+1. FREE USE AND MODIFICATION
 
-2. The Software, in whole or in part, may not be sold, resold, rented,
-   leased, sublicensed, redistributed, or otherwise provided to third
-   parties as a standalone product.
+The Software may be used and modified by any user without requiring a
+DragoraLabs license key for basic use of the panel.
 
-3. The Software may not be rebranded, renamed, or modified for the purpose
-   of being sold or distributed as another person's or company's software.
+Users may modify the source code, theme, colors, layout, dashboard, CSS,
+JavaScript, plugins, extensions, integrations, settings, and other
+functionality for their own installations.
 
-4. The use of any plugin, script, modification, CSS, JavaScript, or other
-   method specifically intended to remove, hide, disable, or circumvent
-   the required DragoraLabs watermark is prohibited.
+Some features, settings, functionality, or services may be restricted or
+locked unless an appropriate DragoraLabs license is activated.
 
-5. The license system, activation mechanism, security features, and other
-   license restrictions may not be bypassed, disabled, modified, or
-   circumvented.
+A license key is NOT required to use the basic DragoraPanel software.
+A license key may only be required for specific premium, restricted,
+licensed, hosted, or otherwise designated functionality.
 
-6. Licensed users may customize their installation, including the theme,
-   colors, layout, dashboard appearance, options, settings, plugins,
-   extensions, integrations, and other functionality, provided that such
-   modifications do not violate the restrictions above.
+2. COPYRIGHT AND DRAGORALABS ATTRIBUTION
 
-7. Modified versions may be used by the licensed user on authorized
-   installations but may not be distributed or sold to third parties
-   without prior written permission from DragoraLabs.
+The original DragoraLabs copyright notice and any required DragoraLabs
+watermark or attribution must not be removed, hidden, altered, disabled,
+or circumvented.
 
-8. The DragoraLabs name, trademarks, copyright notices, and required
-   attribution remain the property of DragoraLabs and may not be presented
-   as the property of another person or company.
+The DragoraLabs name, trademarks, logos, copyright notices, and required
+attribution remain the property of DragoraLabs.
 
-9. A license may not be shared, transferred, or used by unauthorized
-   persons or installations unless expressly permitted by DragoraLabs.
+Users may customize the appearance of their installation, but may not
+represent DragoraPanel or DragoraLabs as being created or owned by another
+person or company.
 
-10. Any violation of these terms may result in termination of the license
-    and loss of the right to use the Software.
+3. NO UNAUTHORIZED RESALE OR REDISTRIBUTION
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-DRAGORALABS OR ITS COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR
+The Software, in whole or in part, may not be sold, resold, rented, leased,
+sublicensed, redistributed, or provided to third parties as a standalone
+software product without prior written permission from DragoraLabs.
+
+This restriction does not prevent users from operating their own hosting
+services, websites, game servers, VPS services, or other businesses using
+an authorized installation of DragoraPanel.
+
+4. NO REBRANDING FOR RESALE
+
+The Software may not be rebranded, renamed, or modified for the purpose of
+selling or distributing it as another person's or company's software.
+
+Users may customize their own installation for their own branding and
+operational purposes, provided that such customization does not remove
+required DragoraLabs attribution or violate this license.
+
+5. LICENSE AND SECURITY PROTECTION
+
+The DragoraLabs license system, activation mechanism, security features,
+feature restrictions, license validation, and other licensing controls
+must not be bypassed, disabled, modified, spoofed, patched, cracked,
+or circumvented under any circumstances.
+
+This includes, but is not limited to:
+
+- Modifying the Software to unlock paid or restricted features without
+  authorization.
+- Circumventing license validation.
+- Forging, copying, sharing, or manipulating license keys.
+- Disabling license checks.
+- Using plugins, scripts, CSS, JavaScript, proxies, patches, or other
+  methods to bypass restrictions.
+- Modifying the Software specifically to defeat DragoraLabs security,
+  licensing, or activation mechanisms.
+
+Users are free to modify the Software for legitimate customization and
+development purposes, but such modifications must not be used to
+circumvent licensing restrictions.
+
+6. USER CUSTOMIZATION
+
+Users are explicitly permitted to customize their DragoraPanel installation.
+
+This includes, but is not limited to:
+
+- Themes
+- Colors
+- Layouts
+- Dashboard design
+- CSS
+- JavaScript
+- Plugins
+- Extensions
+- Integrations
+- API integrations
+- Server configurations
+- Node configurations
+- User interface components
+- Additional functionality
+- Custom automation
+- Custom scripts
+
+Such modifications do not require prior approval from DragoraLabs, provided
+that they comply with this license.
+
+7. MODIFIED VERSIONS
+
+A user may create and operate modified versions of DragoraPanel on
+installations they are authorized to operate.
+
+Modified versions may not be sold, licensed, redistributed, or provided
+to third parties as a separate software product without prior written
+permission from DragoraLabs.
+
+8. PLUGINS AND EXTENSIONS
+
+Users may install, create, modify, and use plugins and extensions with
+DragoraPanel.
+
+DragoraLabs may inspect or access information relating to plugins installed
+or used with DragoraPanel where technically available, including plugin
+names, versions, metadata, configuration information, compatibility
+information, security information, and, where expressly provided or
+transmitted to DragoraLabs, plugin source code or files.
+
+Such access may be used for purposes including:
+
+- Compatibility
+- Security
+- Debugging
+- Support
+- Abuse prevention
+- License enforcement
+- Improving DragoraPanel
+
+Users remain responsible for ensuring that they have the necessary rights
+to use and provide any third-party plugin or extension.
+
+Nothing in this section transfers ownership of a user's independently
+created plugin or extension to DragoraLabs.
+
+9. LICENSE KEYS
+
+A DragoraLabs license key may be required only for features or services
+that DragoraLabs specifically designates as licensed, premium, restricted,
+or otherwise requiring activation.
+
+The absence of a license key does not prohibit the basic use, installation,
+modification, or development of DragoraPanel.
+
+License keys may not be shared, transferred, copied, forged, resold, or
+used by unauthorized persons or installations unless expressly permitted
+by DragoraLabs.
+
+10. COMMERCIAL USE
+
+Commercial use of the basic DragoraPanel software is permitted, provided
+that the user complies with this license.
+
+Users may operate DragoraPanel for their own:
+
+- Hosting business
+- Game server business
+- VPS services
+- Development services
+- Internal infrastructure
+- Customer management systems
+- Personal or commercial projects
+
+This permission does not grant permission to resell DragoraPanel itself
+as a standalone software product or to circumvent any licensed features.
+
+11. THIRD-PARTY COMPONENTS
+
+DragoraPanel may include, depend upon, or integrate with third-party
+software, libraries, plugins, frameworks, or services.
+
+Those components remain subject to their respective licenses and terms.
+
+Where a third-party license conflicts with this license for a particular
+component, the applicable third-party license governs that component to
+the extent required by law.
+
+12. LICENSE TERMINATION
+
+Any violation of the restrictions in this license may result in termination
+of the user's authorization to use restricted DragoraLabs features or
+services.
+
+Termination does not remove rights granted by applicable third-party
+licenses or rights that cannot legally be terminated.
+
+13. NO WARRANTY
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, OR ANY OTHER WARRANTY
+ARISING FROM THE USE OF THE SOFTWARE.
+
+IN NO EVENT SHALL DRAGORALABS OR ITS COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES, LOSS OF DATA, LOSS OF PROFITS, SERVICE INTERRUPTION, OR
 OTHER LIABILITY ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE
-OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+OR THE USE OF THE SOFTWARE, TO THE MAXIMUM EXTENT PERMITTED BY LAW.
 
-By using, installing, or modifying the Software, you agree to be bound by
-these terms.
+14. ACCEPTANCE
+
+By downloading, installing, using, modifying, or operating DragoraPanel,
+you acknowledge that you have read and agree to be bound by the terms of
+this license.
+
+If you do not agree with these terms, you must not use the Software.
+
+Copyright (c) 2026 DragoraLabs
+All rights reserved.
